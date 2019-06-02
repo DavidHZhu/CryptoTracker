@@ -1,18 +1,36 @@
-<h1>Coin Lookup</h1>
-</br>
-<%= form_tag home_lookup_path :method => 'POST' do %>
-    <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
-    <%= submit_tag 'Lookup Stock Quote', class: "btn btn-primary" %>
-<% end %>
-</br>
-<%= @symbol %>
+<!--Crypto Lookup output-->
 
+<div class= "panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Crypto Lookup</h3>
+    </div>
+    <div class= "panel-body">
+        <div class= "form-group">
+            <%= form_tag home_lookup_path :method => 'POST' do %>
+                <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', size: 50, class: "form-control" %>
+                </br>
+                <%= submit_tag 'Lookup Stock Quote', class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>
+</br>
 <!--If input is entered-->
 <% if @symbol %>
-    <% for x in @lookup %>
-        <% if @symbol == x["symbol"] %>
-            <%= x["name"] %>: $<%= x["price_usd"] %><br/>
-            Rank: <%= x["rank"] %><br/><br/>
+    <div class= "panel panel-default">
+        <% for x in @lookup %>
+            <% if @symbol == x["symbol"] %>
+                <div class="panel-heading">
+                    <h3 class="panel-title"><%= x["name"] %></h3>
+                </div>
+                <div class= "panel-body">
+                    $<%= x["price_usd"] %><br/>
+                    Rank: <%= x["rank"] %><br/>
+                    Change over 1h: <%= x["percent_change_1h"] %>%<br/>
+                    Change over 24h: <%= x["percent_change_24h"] %>%<br/>
+                    Change over 7d: <%= x["percent_change_7d"] %>%<br/>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
 <% end %>
