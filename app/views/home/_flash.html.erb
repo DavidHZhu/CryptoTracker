@@ -1,0 +1,12 @@
+<!--Login and Logout flash with Devise-->
+
+<!--Passes name and msg down for each Flash instances-->
+<% flash.each do |name, msg| %>
+    <div class="alert alert-warning alert-dismissible">
+        <button class="close" data-dismiss="alert">
+            <i class="glyphicon glyphicon-remove-circle"></i>
+        </button>
+        <!--Places content into alert message-->
+        <%= content_tag(:div, msg) %>
+    </div>        
+<% end %>

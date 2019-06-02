@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   # List of controllers and methods -> controlled by routes
   def index
-    #require 'net/http'
-    #require 'json'
+    require 'net/http'
+    require 'json'
     
     # Fetches CoinMarketCap prices from link
     @url = 'https://api.coinmarketcap.com/v1/ticker/'
