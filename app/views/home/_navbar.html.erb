@@ -20,6 +20,8 @@
         <li><%= link_to "Lookup", home_lookup_path %></li>
         
         <% if user_signed_in? %>
+          <li><%= link_to "Add Currency", new_crypto_path %></li> 
+          <li><%= link_to "My Cryptos", cryptos_path %></li> 
           <li><%= link_to "Profile", edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
