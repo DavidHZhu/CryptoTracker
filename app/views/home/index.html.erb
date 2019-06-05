@@ -1,13 +1,36 @@
 <!--Edit to display top ten currencies-->
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-
-<% for x in @coins %>
-    <% for coin in @my_coins %>
-        <% if coin == x["symbol"] %>
-            <%= x["name"] %>: $<%= x["price_usd"] %><br/>
-            Rank: <%= x["rank"] %><br/><br/>
+<div class="container">
+    <h1>Home</h1>
+    </br>
+    <strong>Welcome to CryptoTracker! Lookup CryptoCurrencies and track the latest trends! Sign in for more.</strong>
+    </br><br>
+    <h3>Today's top Cryptos:</h3>
+    
+    <!--Displays top ten cryptos-->
+    <table class="table table-responsive table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Current Price</th>
+          <th>1 Hour Change</th>
+          <th>24 Hour Change</th>
+          <th>7 Day Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for coin in @coins %>
+            <% for rank in 1..10 %>
+                <% if rank == coin["rank"].to_i %>
+                <tr>
+                    <td><%= coin["name"] %></td>
+                    <td>$<%= coin["price_usd"] %></td>
+                    <td><%= coin["percent_change_1h"] %>%</td>
+                    <td><%= coin["percent_change_24h"] %>%</td>
+                    <td><%= coin["percent_change_7d"] %>%</td>
+                </tr>
+                <% end %>
+            <% end %>
         <% end %>
-    <% end %>
-<% end %>
+      </tbody>
+    </table>    
+</div>
